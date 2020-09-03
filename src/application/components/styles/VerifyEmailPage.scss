@@ -1,0 +1,38 @@
+@import '../../../base/index.scss';
+
+.verify-wrapper {
+    position: relative;
+    background-color: $grey-color-100;
+    min-height: 100vh;
+
+    .verify-button-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        button{
+            display: block;
+            text-align: center;
+            background-color: $primary-color-900;
+            color: $grey-color-100;
+            font-weight: $heavy-font-weight;
+            padding: $spacing-5;
+            border: none;
+            border-radius: 4px;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            cursor: pointer;
+            outline: none;
+        }
+
+        span{
+            display: block;
+            text-align: center;
+
+            &:nth-child(1) {
+                font-size: $font-size-3;
+                margin-bottom: $spacing-3;
+            }
+        }
+    }
+}

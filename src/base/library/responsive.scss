@@ -1,0 +1,45 @@
+// breakpoints
+$mediumPhones: 400px;
+$largePhones: 600px;
+$tablets: 768px;
+$largeTablets: 900px;
+$smallLaptops: 1024px;
+$largeLaptops: 1200px;
+
+
+// mixins for diffrent media queries
+@mixin mediumPhones {
+    @media only screen and (min-width: #{$mediumPhones}) { 
+        @content;
+    }
+}
+
+@mixin largePhones {
+    @media only screen and (min-width: #{$largePhones}) { 
+        @content;
+    }
+}
+
+@mixin tablets {
+    @media only screen and (min-width: #{$tablets}) { 
+        @content;
+    }
+}
+
+@mixin largeTablets {
+    @media only screen and (min-width: #{$largeTablets}) { 
+        @content;
+    }
+}
+
+@mixin smallLaptops {
+    @media only screen and (min-width: #{$smallLaptops}) { 
+        @content;
+    }
+}
+
+@mixin largeLaptops {
+    @media only screen and (min-width: #{$largeLaptops}) { 
+        @content;
+    }
+}

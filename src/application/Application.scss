@@ -1,0 +1,18 @@
+@import '../base/index.scss';
+
+.desktop {
+    display: flex;
+
+    .left{
+        width: 300px;
+        position: fixed;
+    }
+    .right {
+        position: fixed;
+        overflow-y: auto;
+        height: 100vh;
+        left: 300px;
+        width:calc(100% - 300px);
+        background-color: $grey-color-200;
+    }
+}

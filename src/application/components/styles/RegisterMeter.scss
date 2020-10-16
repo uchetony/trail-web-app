@@ -1,0 +1,80 @@
+@import '../../../base/index.scss';
+
+.register-meter-holder{
+    form{
+        .formGroup{
+            position: relative;
+            margin: $spacing-5 0;
+            small {
+                display: block;
+                font-size: $font-size-1; 
+                margin-left: $spacing-4;
+                margin-top: $spacing-2;
+                width: calc(100%- #{$spacing-4});
+            }
+            
+            .input-field {
+                position: relative;
+                margin: 0;
+
+                .left-icon {
+                    position: absolute;
+                    bottom: $spacing-3;
+                    left: $spacing-4;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+                    color: $primary-color-900;
+                    font-size: $font-size-2;
+
+                    @include largeLaptops { bottom: 30%;}
+                }
+
+                .right-icon {
+                    position: absolute;
+                    bottom: $spacing-3;
+                    right: $spacing-4;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+                    color: $primary-color-900;
+
+                    @include largeLaptops { bottom: 30%;}
+                }
+
+                input, select{
+                    width: 100%;
+                    padding: $spacing-3 $spacing-7;
+                    font-size: $font-size-2;
+                    border: none;
+                    background-color: $grey-color-200;
+                    color: $primary-color-900;
+                    border-radius: 4px;
+
+                    &::placeholder {
+                        color:$primary-color-900;
+                        font-size: $font-size-2;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        button {
+            width: 100%;
+            padding: $spacing-3;
+            border: none;
+            background-color: $primary-color-900;
+            color: $grey-color-100;
+            text-transform: uppercase;
+            font-weight: $heavy-font-weight;
+            letter-spacing: $wide-letter-spacing;
+            border-radius: 4px;
+            margin-top: $spacing-4;
+
+        }
+
+        .error, .required {color: $accent-color-red;}
+    }
+}

@@ -5,7 +5,7 @@ import {
         faEnvelope, faPhoneAlt, faSearchLocation, faAddressCard, faHouseUser, faChartLine, faUser, faUserPlus,
         faSignOutAlt, faCog, faEllipsisH, faMeteor,faThLarge, faFileInvoice, faBolt, faStopwatch,
         faArrowAltCircleUp, faArrowAltCircleDown, faCalendar, faChargingStation, faHeart,
-        faCheck,faCheckCircle, faTimesCircle, faPlus, faMinus
+        faCheck,faCheckCircle, faTimesCircle, faPlus, faMinus, faUsers, faMousePointer, faExclamation
     } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -13,5 +13,5 @@ library.add(
     faEnvelope, faPhoneAlt, faSearchLocation, faAddressCard, faHouseUser, faChartLine, faUser, faUserPlus,
     faSignOutAlt, faCog, faEllipsisH, faMeteor,faThLarge, faFileInvoice, faBolt, faStopwatch,
     faArrowAltCircleUp, faArrowAltCircleDown, faCalendar, faChargingStation, faHeart,
-    faCheck,faCheckCircle, faTimesCircle, faPlus, faMinus
+    faCheck,faCheckCircle, faTimesCircle, faPlus, faMinus, faUsers, faMousePointer, faExclamation
     );

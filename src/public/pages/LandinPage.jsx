@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function LandingPage({history}) {
     useEffect(() => {
+        console.log(history)
         const timer = setTimeout(() => {
             history.replace({pathname: "/app"})
             }, 3000);

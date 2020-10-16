@@ -14,7 +14,6 @@ const SignOutPage = ({authToken}) => {
     // delete token and redirect user on componentDidMount
     useEffect(() => {
         removeCookie('authToken');
-        NotificationManager.info('You are now signed out!', 'Signed Out', 2000);
         window.location = "/"
     }, [])
     

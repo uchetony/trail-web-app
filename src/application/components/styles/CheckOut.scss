@@ -2,18 +2,28 @@
 
 .popup-holder {
     background-color: $grey-color-100;
-    padding: $spacing-4 $spacing-4;
+    padding: $spacing-4;
     width: 80%;
 
     .close-popup {
+        position: absolute;
+        right: $spacing-2;
+        top: $spacing-2;
         color: $accent-color-red; 
         cursor: pointer;
         font-size: $font-size-5;
+
+        @include largeLaptops {  top: $spacing-6; right: $spacing-6;}
     }
 
+    @include largeLaptops {width: 40%; padding: $spacing-6;}
+
     .checkout-holder {
-        h3 {
-            margin: 0;
+
+        &-top {
+            h3 {margin: 0;}
+            h5{ margin-top: $spacing-2; font-weight: $normal-font-weight;}
+            margin-bottom: $spacing-6;
         }
 
         .price-section {
@@ -62,6 +72,8 @@
                 width: 80%;
                 font-size: $font-size-1;
                 color: $grey-color-400;
+
+                @include largeLaptops { width: 70%;}
             }
         }
 
@@ -88,6 +100,17 @@
             letter-spacing: $wide-letter-spacing;
             border-radius: 4px;
 
+        }
+
+        .verifying {
+            margin: $spacing-6 0;
+            text-align: center;
+            h3{ 
+                margin: 0; 
+                font-weight: $normal-font-weight; 
+                font-size: $font-size-6;
+                margin-bottom: $spacing-4;
+            }
         }
     }
 

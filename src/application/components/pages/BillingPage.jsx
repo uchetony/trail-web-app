@@ -18,6 +18,11 @@ const BillingPage = ({userDetails, handleUpdateToken}) => {
         setsubscriptionDetails(subscriptionDetails);
     }
 
+    const getCurrentPlanPrice = (priceCardsArray) => {
+        const currentPriceIndex = priceCardsArray.findIndex(el => el.priceName === activeCard )
+        return priceCardsArray[currentPriceIndex].amount
+    }
+
     const priceCards = [
         { icon: 'charging-station', amount: 8.00, minUnit: 100, maxUnit: 499, unit: 'Kwh', 
             nameDescription: 'Perfect for single room apartments with low inductive loads ', 
@@ -39,6 +44,7 @@ const BillingPage = ({userDetails, handleUpdateToken}) => {
             priceName: 'premium', 
             details: ["4 metering device", "25 sub-accounts", "Up to 10 appliances with 240v avg rating", "Lasts up to 800 hrs", "save 37%"]},
     ]
+
     return (
         <div className="billing-page-wrapper">
             <CheckOut 
@@ -64,13 +70,13 @@ const BillingPage = ({userDetails, handleUpdateToken}) => {
                 </div>
                 <div className="price-cards-holder">
                     {
-                        priceCards.map((el, index) => (
+                        priceCards.map((el, index, arr) => (
                             <div key={index} className={activeCard=== el.priceName ? 'price-card-active' : 'price-card'} >
                                 
                                 <div className="price-name">
                                     <h4>
                                         {el.priceName}
-                                        {activeCard === index && <span><FontAwesomeIcon icon="check-circle" /></span> }
+                                        {(currentPlan && (activeCard === el.priceName)) && <span><FontAwesomeIcon icon="check-circle" /></span> }
                                     </h4>
                                     <small> {el.nameDescription} </small>
                                 </div>
@@ -103,7 +109,7 @@ const BillingPage = ({userDetails, handleUpdateToken}) => {
                                 <div className="pay-button">
                                     <button onClick={()=>handleIsCheckingOut(true, el)} className={activeCard === null ? 'subscribe' : ''} > 
                                         {(activeCard !== null) ? 
-                                            (activeCard === el.priceName ? 'buy now' : 'upgrade') 
+                                            (activeCard === el.priceName ? 'buy now' : (el.amount < getCurrentPlanPrice(arr) ? 'Upgrade' : 'Downgrade') ) 
                                             :'subscribe'
                                         } 
                                     </button>

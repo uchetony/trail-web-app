@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/TopNavbar.scss';
 import {isMobile, isBrowser} from 'react-device-detect'
-import {dashboardNavbar, billingNavbar, settingsNavbar, profileNavbar} from './DesktopNavbars'
+import {dashboardNavbar, billingNavbar, settingsNavbar, profileNavbar, usersNavbar, devicesNavbar} from './DesktopNavbars'
 import MobileNavbar from './MobileNavbar';
 
 export default function TopNavbar({handleIsOpenMobileSidebar, location, url}) {
@@ -10,7 +10,10 @@ export default function TopNavbar({handleIsOpenMobileSidebar, location, url}) {
         {path: `${url}/dashboard`, header: dashboardNavbar, className: "dashboard-navbar" },
         {path: `${url}/billing`, header: billingNavbar, className: "billing-navbar"},
         {path: `${url}/settings`, header: settingsNavbar, className: "settings-navbar"},
-        {path: `${url}/profile`, header: profileNavbar, className: "profile-navbar"}
+        {path: `${url}/profile`, header: profileNavbar, className: "profile-navbar"},
+        {path: `${url}/users`, header: usersNavbar, className: "users-navbar"},
+        {path: `${url}/devices`, header: devicesNavbar, className: "devices-navbar"},
+
     ]
 
     return (

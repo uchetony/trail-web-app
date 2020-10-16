@@ -32,6 +32,7 @@ const VerifyEmailPage = ({authToken, handleUpdateToken, history}) => {
             const {token} = res.data;
             setisVerifying(false);
             handleUpdateToken(token);
+            history.push("/app")
         } catch (ex) {
             if(ex.response) {
                 const {data} = ex.response
@@ -46,9 +47,9 @@ const VerifyEmailPage = ({authToken, handleUpdateToken, history}) => {
     }
 
     // prevent verified users from accessing this route
-    // if(authToken !== null && jwtDetails.isVerifiedEmail){
-    //     return history.goBack()
-    // }
+    if(authToken !== null && jwtDetails.isVerifiedEmail){
+        return <Redirect to="/app" />
+    }
 
     // prevent unauthorized users from accessing this route
     if(authToken === null) {

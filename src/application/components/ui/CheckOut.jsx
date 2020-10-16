@@ -6,6 +6,7 @@ import { NotificationManager } from 'react-notifications';
 import WithPopUp from '../../../hoc/WithPopUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import numeral from 'numeral'
 
 const INITIAL_STATE ={
     priceName: '',
@@ -20,7 +21,12 @@ const CheckOut = ({subscriptionDetails, userDetails, handleIsOpenPopUp, handleUp
 
     const {priceName, amount, minUnit, maxUnit} = subscriptionDetails;
 
-    const [checkOutDetails, setCheckOutDetails] = useState({...INITIAL_STATE})
+    const [checkOutDetails, setCheckOutDetails] = useState({...INITIAL_STATE});
+
+    const capitalizeInitial = word => {
+        if(typeof word !== 'string') return ''
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
 
     const calculateTotalAmount = (amount, quantiity) => {
         return amount * quantiity;
@@ -132,8 +138,10 @@ const CheckOut = ({subscriptionDetails, userDetails, handleIsOpenPopUp, handleUp
         <div className="checkout-holder">
             {!checkOutDetails.isVerifying && (
                 <div>
-                    <h3> {checkOutDetails.priceName} </h3>
-                    <h5> NGN {checkOutDetails.baseAmount} per Kwh </h5>
+                    <div className="checkout-holder-top">
+                        <h3> {capitalizeInitial(checkOutDetails.priceName)} plan </h3>
+                        <h5> NGN {checkOutDetails.baseAmount} per Kwh </h5>
+                    </div>
                     <div className="price-section">
                         <div className="price-picker">
                             <input className="price-picker-display" onBlur={() =>handleQuantityChange(0)} onChange={handleInputChange} value={checkOutDetails.quantity} type="text"/>
@@ -147,7 +155,7 @@ const CheckOut = ({subscriptionDetails, userDetails, handleIsOpenPopUp, handleUp
                     <div className="checkout-holder-total" >
                         <h3> 
                             <span>Total</span>
-                            <span>NGN {checkOutDetails.totalAmount}</span> 
+                            <span>NGN {numeral(checkOutDetails.totalAmount).format('0,0.0')}</span> 
                         </h3>
                     </div>
                     
@@ -156,7 +164,10 @@ const CheckOut = ({subscriptionDetails, userDetails, handleIsOpenPopUp, handleUp
             )}
 
             {checkOutDetails.isVerifying && (
-                <FontAwesomeIcon icon="spinner" pulse />
+                <div className="verifying">
+                    <h3>Updating units</h3>
+                    <FontAwesomeIcon icon="spinner" pulse />
+                </div>
             )}
         </div>
     )

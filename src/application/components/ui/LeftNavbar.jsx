@@ -7,13 +7,19 @@ import {Link} from 'react-router-dom';
 
 export default function LeftNavbar({userDetails, url, location, isOpenMobileSidebar}) {
     const {pathname} = location;
+    const {role} = userDetails;
 
     const navigation = [
-        { link: "dashboard", name: "Dashboard", icon: "th-large"},
-        { link: "profile", name: "My account", icon: "user"},
-        { link: "billing", name: "Energy billing", icon: "bolt"},
-        { link: "settings", name: "Settings", icon: "cog"},
-        { link: "signout", name: "Sign Out", icon: "sign-out-alt"}
+        { link: "dashboard", name: "Dashboard", icon: "th-large", role:["customer", "stakeholder"]},
+        { link: "profile", name: "My account", icon: "user", role:["customer", "stakeholder"]},
+
+        { link: "users", name: "Manage users", icon: "users", role:["stakeholder"]},
+        { link: "devices", name: "Devices", icon: "tachometer-alt", role:["stakeholder"]},
+
+        { link: "billing", name: "Energy billing", icon: "bolt", role:["customer"]},
+
+        { link: "settings", name: "Settings", icon: "cog", role:["customer", "stakeholder"]},
+        { link: "signout", name: "Sign Out", icon: "sign-out-alt", role:["customer", "stakeholder"]}
     ]
 
     return (
@@ -28,7 +34,8 @@ export default function LeftNavbar({userDetails, url, location, isOpenMobileSide
         
                         { userDetails !== null && (
                             <div className="profile-details">
-                                <h3>{userDetails.fullName} </h3>
+                                {role === 'customer' && <h3>{userDetails.fullName} </h3>}
+                                {role === 'stakeholder' && <h3>{userDetails.companyName} </h3>}
                                 <p>{userDetails.role}</p>
                             </div>
                         )}
@@ -38,14 +45,16 @@ export default function LeftNavbar({userDetails, url, location, isOpenMobileSide
                         {
                             navigation.map((nav, index) => 
                                 <li key={index}>
-                                    <Link to={`${nav.link !== "signout" ? url : ''}/${nav.link}` }>
-                                        <div className={pathname === `${url}/${nav.link}` ? 
-                                            "left-navbar-icon-active" : "left-navbar-icon"}
-                                        >
-                                            <span><FontAwesomeIcon icon={nav.icon} /></span>
-                                            <p> {nav.name} </p>
-                                        </div>
-                                    </Link>
+                                    {nav.role.includes(role) && (
+                                        <Link to={`${nav.link !== "signout" ? url : ''}/${nav.link}` }>
+                                            <div className={pathname === `${url}/${nav.link}` ? 
+                                                "left-navbar-icon-active" : "left-navbar-icon"}
+                                            >
+                                                <span><FontAwesomeIcon icon={nav.icon} /></span>
+                                                <p> {nav.name} </p>
+                                            </div>
+                                        </Link>
+                                    )}
                                 </li>
                             )
                         }

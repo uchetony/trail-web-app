@@ -24,7 +24,7 @@ export const billingNavbar = () => {
 export const settingsNavbar = () => {
     return (
         <React.Fragment>
-            this is the settings navbar
+            <h3>Settings</h3>
         </React.Fragment>
     )
 }
@@ -32,7 +32,23 @@ export const settingsNavbar = () => {
 export const profileNavbar = () => {
     return (
         <React.Fragment>
-            this is the profile navbar
+            <h3>Profile</h3>
+        </React.Fragment>
+    )
+}
+
+export const usersNavbar = () => {
+    return (
+        <React.Fragment>
+            <h3>Customers</h3>
+        </React.Fragment>
+    )
+}
+
+export const devicesNavbar = () => {
+    return (
+        <React.Fragment>
+            <h3>Devices</h3>
         </React.Fragment>
     )
 }

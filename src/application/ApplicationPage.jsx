@@ -11,12 +11,16 @@ import TopNavbar from './components/ui/TopNavbar';
 import { useState } from 'react';
 import Footer from './components/ui/Footer';
 import jwtDecode from 'jwt-decode'
+import Users from './components/pages/UsersPage';
+import UsersPage from './components/pages/UsersPage';
+import DevicesPage from './components/pages/DevicesPage';
 
 
 const ApplicationPage = ({match, location, authToken, handleUpdateToken}) => {
     const {path, url} = match;
 
     const userDetails = authToken === null ? {} : jwtDecode(authToken);
+    const {role} = userDetails;
 
     const [isOpenMobileSidebar, setIsOpenMobileSidebar] = useState(null);
     const handleIsOpenMobileSidebar = (value) => {
@@ -51,7 +55,9 @@ const ApplicationPage = ({match, location, authToken, handleUpdateToken}) => {
                             <Route path={`${path}/dashboard`} render={() => <DashboardPage handleUpdateToken={handleUpdateToken} userDetails={userDetails} />}/>
                             <Route path={`${path}/profile`} render={()=> <ProfilePage userDetails={userDetails}/>}/>
                             <Route path={`${path}/settings`} render={()=> <SettingsPage/>}/>
-                            <Route path={`${path}/billing`} render={()=> <BillingPage handleUpdateToken={handleUpdateToken} userDetails={userDetails} />}/>
+                            {role === 'customer' && <Route path={`${path}/billing`} render={()=> <BillingPage handleUpdateToken={handleUpdateToken} userDetails={userDetails} />}/>}
+                            {role === 'stakeholder' && <Route path={`${path}/users`} render={() => <UsersPage userDetails={userDetails} authToken={authToken} /> } /> }
+                            {role === 'stakeholder' && <Route path={`${path}/devices`} render={() => <DevicesPage /> } />}
                             <Route path="*" render={()=><Redirect to="/404"/>} />
                         </Switch>
                     </div>

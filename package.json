@@ -13,6 +13,7 @@
     "firebase": "^7.18.0",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.14.1",
+    "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
     "react-device-detect": "^1.13.1",

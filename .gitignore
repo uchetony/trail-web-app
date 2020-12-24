@@ -13,8 +13,10 @@
 
 # misc
 .DS_Store
-.env*
+.env.*
 *.log*
+.firebaserc
+.firebase.json
 
 # Local Netlify folder
 .netlify

@@ -16,7 +16,7 @@
 .env.*
 *.log*
 .firebaserc
-.firebase.json
+firebase.json
 
 # Local Netlify folder
 .netlify

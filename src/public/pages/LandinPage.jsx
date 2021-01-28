@@ -1,37 +1,41 @@
-import React from 'react'
-import { useEffect } from 'react';
-import '../styles/LandingPage.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
 
-export default function LandingPage({history}) {
-    useEffect(() => {
-        console.log(history)
-        const timer = setTimeout(() => {
-            history.replace({pathname: "/app"})
-            }, 3000);
-            
-        return () => {
-            clearTimeout(timer);
-        }
-    }, [history])
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-    return (
-        <div className="landing-wrapper">
-            <div className="landing-container">
-                <div className="logo-holder">
-                    <span>Smart</span>
-                    <span><FontAwesomeIcon icon="tachometer-alt"className="icon" />eter</span>
-                </div>
+import "../styles/LandingPage.scss";
 
-                <div className="team-name-holder">
-                    <span>From</span>
-                    <span>Trail</span>
-                </div>
+export default function LandingPage({ history }) {
+  React.useEffect(() => {
+    console.log(history);
+    const timer = setTimeout(() => {
+      history.replace({ pathname: "/app" });
+    }, 3000);
 
-                <div className="curves">
-                    <span></span>
-                </div>
-            </div>
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [history]);
+
+  return (
+    <div className="landing-wrapper">
+      <div className="landing-container">
+        <div className="logo-holder">
+          <span>Smart</span>
+          <span>
+            <FontAwesomeIcon icon="tachometer-alt" className="icon" />
+            eter
+          </span>
         </div>
-    )
+
+        <div className="team-name-holder">
+          <span>From</span>
+          <span>Trail</span>
+        </div>
+
+        <div className="curves">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  );
 }

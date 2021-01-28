@@ -1,35 +1,31 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom';
-import { NotificationManager } from 'react-notifications';
-import { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import '../styles/SignOutPage.scss';
-import WithTitle from '../../../hoc/WithTitle';
-import { useCookies } from 'react-cookie';
+import React from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SignOutPage = ({authToken}) => {
-    const [cookies, setCookie, removeCookie] = useCookies(['authToken']);
+import auth from "../../../services/authService";
 
-    // delete token and redirect user on componentDidMount
-    useEffect(() => {
-        removeCookie('authToken');
-        window.location = "/"
-    }, [])
-    
-    // prevent visitors from accessing this page
-    if(authToken === null) {
-        return <Redirect to="/" />
-    }
+import WithTitle from "../../../hoc/WithTitle";
 
-    return (
-        <div className="signout-wrapper">
-            <div className="signout-container">
-                <span><FontAwesomeIcon icon="circle-notch" pulse /></span>
-                <span>signing out</span>
-            </div>
-        </div>
-    )
-}
+import "../styles/SignOutPage.scss";
 
-export default WithTitle({component: SignOutPage, title: 'Sign out'})
+const SignOutPage = () => {
+  React.useEffect(() => {
+    setTimeout(() => {
+      auth.signOut();
+      window.location = "/";
+    }, 3000);
+  }, []);
+
+  return (
+    <div className="signout-wrapper">
+      <div className="signout-container">
+        <span>
+          <FontAwesomeIcon icon="circle-notch" pulse />
+        </span>
+        <span>signing out</span>
+      </div>
+    </div>
+  );
+};
+
+export default WithTitle({ component: SignOutPage, title: "Sign out" });

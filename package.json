@@ -6,16 +6,18 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@sentry/react": "^6.0.2",
+    "@sentry/tracing": "^6.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "firebase": "^7.18.0",
+    "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.14.1",
     "numeral": "^2.0.6",
     "react": "^16.13.1",
-    "react-cookie": "^4.0.3",
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.6",
@@ -32,7 +34,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build && firebase deploy",
+    "lint": "eslint src/**/*.js*",
+    "lint:fix": "eslint --fix src/**/*.js*"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,5 +52,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.21.5",
+    "husky": "^4.3.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint",
+      "pre-push": "yarn build"
+    }
   }
 }

@@ -1,47 +1,74 @@
-import React from 'react'
-import {Link} from 'react-router-dom';
+import React from "react";
 
-import FormInput from './FormInput';
-import SubmitButton from './SubmitButton';
+import { Link } from "react-router-dom";
+import Joi from "joi-browser";
+import { NotificationManager } from "react-notifications";
 
-export default function SignInForm(props) {
-    const {signinFormPageState, handleInputChange, isEnabled, handleSubmit, isSubmitting } = props;
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="header"><h1>Login</h1></div>
-                <div className="sub-header"><small>to your smart meter account</small></div>
+import auth from "../../services/authService";
 
-                <FormInput 
-                    label="Email" 
-                    type="email" 
-                    name="email" 
-                    icon="envelope"
-                    placeholder="Enter valid email"
-                    value={signinFormPageState.email.value} 
-                    handleInputChange={handleInputChange} 
-                    errorMsg={signinFormPageState.email.errorMsg}
-                    isRequired={signinFormPageState.email.required} />
-                <FormInput 
-                    label="Password" 
-                    type="password" 
-                    name="password" 
-                    icon="lock"
-                    placeholder="Enter your password"
-                    value={signinFormPageState.password.value} 
-                    handleInputChange={handleInputChange} 
-                    isRequired={signinFormPageState.password.required} />
-                <SubmitButton 
-                    disabled={!isEnabled} 
-                    type="submit" 
-                    label="sign in" 
-                    isSubmitting={isSubmitting}
-                    submittingText="submitting"
-                />
-                
-                <small className="no-account">Don't have an account? <Link to="/signup">Register now</Link> </small>
+import Form from "../../components/common/form";
 
-            </form>
-        </div>
-    )
+export default function SignInForm({ location }) {
+  const signInFormState = { data: { email: "", password: "" }, errors: {} };
+
+  // render input fields
+  const signInFormInputFields = [
+    { name: "email", label: "Email", icon: "envelope" },
+    { name: "password", label: "Password", icon: "lock", type: "password" },
+  ];
+
+  // validate each input field
+  const signInFormErrorSchema = {
+    email: Joi.string().email().required().label("Email"),
+    password: Joi.string().required().label("Password"),
+  };
+
+  const submitButton = {
+    label: "sign in",
+    isSubmitting: null,
+    submittingText: "submitting",
+  };
+
+  const doSubmit = async (userLoginDetails) => {
+    try {
+      const { email, password } = userLoginDetails;
+      await auth.signIn(email, password);
+
+      const { state } = location;
+      window.location = state ? state.from.pathname : "/app";
+      NotificationManager.success(
+        "Signed In Successfully",
+        "Successful!",
+        5000
+      );
+    } catch (ex) {
+      if (ex.response) {
+        const { data } = ex.response;
+        NotificationManager.error(data, "Error!", 5000);
+      }
+    }
+  };
+
+  return (
+    <div>
+      <div className="header">
+        <h1>Login</h1>
+      </div>
+      <div className="sub-header">
+        <small>to your smart meter account</small>
+      </div>
+
+      <Form
+        errorSchema={signInFormErrorSchema}
+        doSubmit={doSubmit}
+        state={signInFormState}
+        submitButton={submitButton}
+        inputFields={signInFormInputFields}
+      />
+
+      <small className="no-account">
+        Don't have an account? <Link to="/signup">Register now</Link>{" "}
+      </small>
+    </div>
+  );
 }

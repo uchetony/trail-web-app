@@ -9,7 +9,7 @@ import CheckOut from "../ui/CheckOut";
 
 import "../styles/BillingPage.scss";
 
-const BillingPage = ({ handleUpdateToken }) => {
+const BillingPage = () => {
   const userDetails = auth.getCurrentUser();
 
   const {
@@ -108,8 +108,6 @@ const BillingPage = ({ handleUpdateToken }) => {
         handleIsOpenPopUp={handleIsCheckingOut}
         isOpenPopUp={isCheckingOut}
         subscriptionDetails={subscriptionDetails}
-        userDetails={userDetails}
-        handleUpdateToken={handleUpdateToken}
       />
 
       <div className="billing-page-holder">

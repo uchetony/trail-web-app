@@ -45,10 +45,9 @@ const CustomerDashboard = () => {
       increase: false,
       decrease: true,
       difference: "20.5",
+      active: true,
     },
   ];
-
-  const [activeCard, setActiveCard] = React.useState([0, 2]);
 
   const handleOpenFilter = () => {
     setisFilterOpen(!isFilterOpen);
@@ -74,8 +73,7 @@ const CustomerDashboard = () => {
         {!isVerifiedEmail && meterId && (
           <div className="verify-email">
             <div className="icon-holder">
-              {" "}
-              <FontAwesomeIcon icon="exclamation" />{" "}
+              <FontAwesomeIcon icon="exclamation" />
             </div>
             <small>
               Hi {userDetails.fullName} , please check your mailbox to verify
@@ -86,7 +84,11 @@ const CustomerDashboard = () => {
                             Verify now
                         </button> */}
 
-            <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">
+            <a
+              href="https://mail.google.com/mail/u/0/#inbox"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Verify now
             </a>
           </div>
@@ -110,11 +112,7 @@ const CustomerDashboard = () => {
                 {meterCards.map((el, index) => (
                   <div
                     key={index}
-                    className={
-                      activeCard.includes(index)
-                        ? "meter-card-active"
-                        : "meter-card"
-                    }
+                    className={el.active ? "meter-card-active" : "meter-card"}
                   >
                     <div className="meter-card-icon">
                       <span>
@@ -137,16 +135,14 @@ const CustomerDashboard = () => {
                     {currentPlan && (
                       <small>
                         <span className="difference-increase">
-                          {" "}
                           {el.increase && (
                             <FontAwesomeIcon icon="arrow-alt-circle-up" />
-                          )}{" "}
+                          )}
                         </span>
                         <span className="difference-decrease">
-                          {" "}
                           {el.decrease && (
                             <FontAwesomeIcon icon="arrow-alt-circle-down" />
-                          )}{" "}
+                          )}
                         </span>
                         {(el.increase || el.decrease) && (
                           <span> {el.difference}% </span>
@@ -163,12 +159,12 @@ const CustomerDashboard = () => {
                 <div className="stats-header">
                   <div>
                     <h3>
-                      Meter readings of <span> {meterReading} </span>{" "}
+                      Meter readings of <span> {meterReading} </span>
                     </h3>
                   </div>
                   <div className="filter">
                     <span onClick={handleOpenFilter}>
-                      <FontAwesomeIcon icon="ellipsis-h" pull="right" />{" "}
+                      <FontAwesomeIcon icon="ellipsis-h" pull="right" />
                     </span>
                     {isFilterOpen && (
                       <div className="filter-card">
@@ -177,8 +173,7 @@ const CustomerDashboard = () => {
                             key={index}
                             onClick={() => handleFilterMeterReadings(el)}
                           >
-                            {" "}
-                            {el}{" "}
+                            {el}
                           </li>
                         ))}
                       </div>

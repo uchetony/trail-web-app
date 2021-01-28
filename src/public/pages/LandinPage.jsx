@@ -6,7 +6,6 @@ import "../styles/LandingPage.scss";
 
 export default function LandingPage({ history }) {
   React.useEffect(() => {
-    console.log(history);
     const timer = setTimeout(() => {
       history.replace({ pathname: "/app" });
     }, 3000);

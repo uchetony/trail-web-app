@@ -25,8 +25,12 @@ const ProfilePage = () => {
 
       <div className="profile-page-holder">
         <div className="profile-detail">
-          <p>Full Name:</p>
-          <small>{userDetails.fullName}</small>
+          <p>{userDetails.role === "customer" ? "Full Name:" : "Company"} </p>
+          <small>
+            {userDetails.role === "customer"
+              ? userDetails.fullName
+              : userDetails.companyName}
+          </small>
         </div>
         <div className="profile-detail">
           <p>Email:</p>

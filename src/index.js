@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import { CookiesProvider } from "react-cookie";
 
 import logger from "./services/logService";
 
 // modules
 import "./modules/font-awesome";
-import "./modules/firebase/config";
+
+import "./index.css";
 
 logger.init();
 
 ReactDOM.render(
   <BrowserRouter>
-    <CookiesProvider>
-      <App />
-    </CookiesProvider>
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

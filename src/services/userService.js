@@ -19,3 +19,7 @@ export const verifyUserEmail = (userId, email) => {
 export const setUserBillingData = (userId, billingDetails) => {
   return http.post(`${userUrl(userId)}/billing`, billingDetails);
 };
+
+export const getStakeholderUsers = (stakeholderId) => {
+  return http.get(`${usersEndpoint}/stakeholders/${stakeholderId}`);
+};

@@ -7,54 +7,38 @@ import WithTitle from "../../../hoc/WithTitle";
 
 import auth from "../../../services/authService";
 
-import axios from "axios";
+import { getStakeholderUsers } from "../../../services/userService";
 
 import "../styles/UsersPage.scss";
 
-const UsersPage = ({ authToken }) => {
-  const userDetails = auth.getCurrentUser();
+const UsersPage = () => {
+  const { _id: stakeholderId } = auth.getCurrentUser();
 
   const [customers, setcustomers] = React.useState(null);
 
-  const getCompanyCustomers = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT_BASE_URL}/api/users/stakeholders/${userDetails._id}`,
-        {
-          headers: {
-            "x-auth-token": authToken,
-            "content-type": "application/json",
-          },
-        }
-      );
-      const { data } = response;
-      data.length &&
-        NotificationManager.success(
-          "Customers retrieved sucessfully",
-          "Successful!",
-          5000
-        );
-      setcustomers(data);
-    } catch (ex) {
-      if (ex.response) {
-        const { data } = ex.response;
-        setcustomers([]);
-        NotificationManager.error(data, "Error!", 5000);
-      } else {
-        setcustomers([]);
-        NotificationManager.error(
-          "Could not connect to server",
-          "Error!",
-          5000
-        );
-      }
-    }
-  };
-
   useEffect(() => {
+    const getCompanyCustomers = async () => {
+      try {
+        const { data } = await getStakeholderUsers(stakeholderId);
+
+        data.length &&
+          NotificationManager.success(
+            "Customers retrieved sucessfully",
+            "Successful!",
+            5000
+          );
+        setcustomers(data);
+      } catch (ex) {
+        if (ex.response) {
+          const { data } = ex.response;
+          setcustomers([]);
+          NotificationManager.error(data, "Error!", 5000);
+        }
+      }
+    };
     getCompanyCustomers();
-  }, []);
-  console.log(customers);
+  }, [stakeholderId]);
+
   return (
     <div className="users-page-wrapper">
       <div className="users-page-holder">

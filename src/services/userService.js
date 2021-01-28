@@ -1,6 +1,6 @@
 import http from "./httpService";
 
-const apiUrl = "http://localhost:5000/api";
+const { REACT_APP_API_URL: apiUrl } = process.env;
 
 const usersEndpoint = `${apiUrl}/users`;
 

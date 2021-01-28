@@ -190,8 +190,8 @@ const CheckOut = ({ subscriptionDetails }) => {
               </span>
             </div>
             <small>
-              This subscription package allows you to purchase between {minUnit}{" "}
-              and {maxUnit} Kwh{" "}
+              This subscription package allows you to purchase between {minUnit}
+              and {maxUnit} Kwh
             </small>
           </div>
 

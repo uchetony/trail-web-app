@@ -27,7 +27,6 @@ export default function LandingPage({ history }) {
         </div>
 
         <div className="team-name-holder">
-          <span>From</span>
           <span>Trail</span>
         </div>
 

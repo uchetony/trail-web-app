@@ -1,8 +1,10 @@
 import http from "./httpService";
 import jwtDecode from "jwt-decode";
 
-const apiUrl = "http://localhost:5000/api";
-const tokenKey = "trail_token";
+const {
+  REACT_APP_API_URL: apiUrl,
+  REACT_APP_TOKEN_KEY: tokenKey,
+} = process.env;
 
 const authEndpoint = `${apiUrl}/auth`;
 

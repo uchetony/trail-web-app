@@ -1,0 +1,153 @@
+@import "../../../assets/css/index.scss";
+
+.signup-page-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: $primary-color-900;
+  min-height: 100vh;
+  padding: 0 $spacing-3;
+
+  @include mediumPhones {
+    padding: 0 $spacing-4;
+  }
+
+  .signup-form-holder {
+    position: relative;
+    display: inline-block;
+    margin-top: $spacing-9;
+    width: 100%;
+    background-color: $grey-color-100;
+    padding: $spacing-3 $spacing-2;
+    border-radius: 2px;
+
+    @include mediumPhones {
+      padding: $spacing-5 $spacing-3;
+    }
+
+    @include largeLaptops {
+      margin-top: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30%;
+      padding: $spacing-5 $spacing-7;
+      border-radius: 4px;
+    }
+
+    form {
+      .header {
+        h1 {
+          text-align: center;
+          font-size: $font-size-6;
+          font-weight: $heavy-font-weight;
+          color: $primary-color-900;
+          margin: 0;
+        }
+      }
+      .formGroup {
+        position: relative;
+        margin: $spacing-5 0;
+        small {
+          display: block;
+          font-size: $font-size-1;
+          margin-left: $spacing-4;
+          margin-top: $spacing-2;
+          width: calc(100%- #{$spacing-4});
+        }
+        .input-field {
+          position: relative;
+          margin: 0;
+
+          .left-icon {
+            position: absolute;
+            bottom: $spacing-3;
+            left: $spacing-4;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            color: $primary-color-900;
+            font-size: $font-size-2;
+
+            @include largeLaptops {
+              bottom: 30%;
+            }
+          }
+
+          .right-icon {
+            position: absolute;
+            bottom: $spacing-3;
+            right: $spacing-4;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            color: $primary-color-900;
+
+            @include largeLaptops {
+              bottom: 30%;
+            }
+          }
+
+          input {
+            width: 100%;
+            padding: $spacing-3 $spacing-7;
+            font-size: $font-size-2;
+            border: none;
+            background-color: $grey-color-200;
+            color: $primary-color-900;
+            border-radius: 4px;
+
+            &::placeholder {
+              color: $primary-color-900;
+              font-size: $font-size-2;
+
+              @include tablets {
+                font-size: 0.9em;
+              }
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: $spacing-3 0;
+        background-color: $primary-color-900;
+        color: $grey-color-100;
+        text-transform: uppercase;
+        font-weight: $heavy-font-weight;
+        letter-spacing: $wide-letter-spacing;
+        margin-top: $spacing-1;
+        margin-bottom: $spacing-3;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+        @include mediumPhones {
+          margin-bottom: $spacing-4;
+        }
+      }
+
+      .no-account {
+        font-size: $font-size-1;
+        display: block;
+        text-align: center;
+        color: $primary-color-900;
+
+        a {
+          text-decoration: none;
+          color: $primary-color-600;
+        }
+      }
+
+      .error,
+      .required {
+        color: $accent-color-red;
+      }
+    }
+  }
+}

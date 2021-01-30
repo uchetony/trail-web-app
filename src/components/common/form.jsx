@@ -1,8 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
-import FormInput from "../../public/ui/FormInput";
-import SubmitButton from "../../public/ui/SubmitButton";
-import FormSelect from "../../public/ui/FormSelect";
+import FormInput from "./FormInput";
+import FormSelect from "./FormSelect";
+import SubmitButton from "./SubmitButton";
 
 const INITIAL_FORM_STATE = {
   data: {},
@@ -94,15 +94,6 @@ export default function Form(props) {
         defaultText={defaultText}
       />
     );
-    //   <Select
-    //     key={index}
-    //     name={name}
-    //     value={formState.data[name] || ""}
-    //     label={label}
-    //     options={options}
-    //     error={formState.errors[name]}
-    //     onChange={handleChange}
-    //   />
   };
 
   const renderSubmitButton = ({ label, isSubmitting, submittingText }) => {

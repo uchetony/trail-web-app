@@ -1,22 +1,21 @@
 import React from "react";
-import "./App.css";
 
 // Routes
 import { Route, Switch, Redirect } from "react-router-dom";
-import SignInPage from "./public/pages/SignInPage";
-import SignUpPage from "./public/pages/SignUpPage";
-import ApplicationPage from "./application/ApplicationPage";
-import SignOutPage from "./application/components/pages/SignOutPage";
-import VerifyEmailPage from "./application/components/pages/VerifyEmailPage";
+import SignInPage from "./components/public/pages/SignInPage";
+import SignUpPage from "./components/public/pages/SignUpPage";
+import ApplicationPage from "./components/application/ApplicationPage";
+import SignOutPage from "./components/application/pages/SignOutPage";
+import VerifyEmailPage from "./components/application/pages/VerifyEmailPage";
+import NotFoundPage from "./components/public/pages/NotFoundPage";
+import LandingPage from "./components/public/pages/LandingPage";
+import ProtectedRoute from "./components/common/protectedRoute";
 
 // notifications
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 
-// cookies
-import NotFoundPage from "./public/pages/NotFoundPage";
-import LandingPage from "./public/pages/LandinPage";
-import ProtectedRoute from "./components/common/protectedRoute";
+import "./App.css";
 
 function App() {
   return (

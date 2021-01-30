@@ -1,0 +1,423 @@
+@import "../../../assets/css/index.scss";
+
+.billing-page-wrapper {
+  .billing-page-holder {
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100vh;
+    padding: $spacing-8 $spacing-3 0 $spacing-3;
+    // background-color: red;
+
+    @include mediumPhones {
+      padding: $spacing-9 $spacing-5;
+    }
+
+    @include largePhones {
+      padding: $spacing-9 $spacing-7;
+    }
+
+    @include tablets {
+      padding: $spacing-9;
+    }
+
+    @include largeLaptops {
+      padding: $spacing-9 $spacing-10;
+    }
+
+    .billing-page-intro {
+      text-align: center;
+      margin-bottom: $spacing-6;
+
+      @include largePhones {
+        margin-bottom: $spacing-8;
+      }
+
+      .billing-page-icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: $spacing-3;
+
+        @include largeLaptops {
+          margin-bottom: $spacing-5;
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $grey-color-100;
+          border-radius: 50%;
+          height: 40px;
+          width: 40px;
+          font-size: $font-size-2;
+
+          @include largeLaptops {
+            height: 60px;
+            width: 60px;
+            font-size: $font-size-5;
+          }
+        }
+      }
+      small {
+        display: inline-block;
+        color: $grey-color-900;
+        width: 80%;
+        font-size: $font-size-1;
+        font-weight: $light-font-weight;
+
+        @include mediumPhones {
+          line-height: $spacing-4;
+        }
+
+        @include largeLaptops {
+          width: 600px;
+          line-height: $spacing-5;
+          font-size: $font-size-2;
+        }
+      }
+    }
+
+    .price-cards-holder {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @include mediumPhones {
+        padding: 0 calc((100% - 350px) / 2);
+      }
+      @include largePhones {
+        padding: 0;
+      }
+      @include smallLaptops {
+        padding: 0;
+      }
+      @include largeLaptops {
+      }
+
+      .price-card,
+      .price-card-active {
+        background-color: $grey-color-100;
+        // background-color: red;
+        width: 100%;
+        height: 460px;
+        border: 1px solid $grey-color-300;
+        border-top: 5px solid $primary-color-900;
+        margin-bottom: $spacing-4;
+
+        @include mediumPhones {
+          width: 350px;
+          margin-bottom: $spacing-6;
+        }
+
+        @include largePhones {
+          width: 49%;
+        }
+
+        @include tablets {
+          width: 48%;
+          height: 500px;
+        }
+
+        @include smallLaptops {
+          width: 24%;
+          height: 500px;
+        }
+
+        @include largeLaptops {
+          width: 24%;
+          height: 500px;
+        }
+
+        .price-name {
+          height: 90px;
+          padding-top: $spacing-6;
+          // background-color: red;
+
+          @include mediumPhones {
+            padding-top: $spacing-4;
+          }
+          @include largeLaptops {
+            padding-top: $spacing-3;
+          }
+          h4 {
+            color: $primary-color-900;
+            font-size: $font-size-2;
+            font-weight: $normal-font-weight;
+            text-transform: uppercase;
+            letter-spacing: $wide-letter-spacing;
+            margin: 0 $spacing-6;
+            font-weight: $heavy-font-weight;
+
+            @include mediumPhones {
+              padding-top: $spacing-2;
+              margin: 0 $spacing-7;
+            }
+
+            @include largePhones {
+              padding-top: $spacing-2;
+              margin: 0 $spacing-5;
+            }
+
+            @include tablets {
+              padding-top: $spacing-4;
+              margin: 0 $spacing-4;
+            }
+
+            @include largeLaptops {
+              padding-top: $spacing-4;
+              margin: 0 $spacing-4;
+            }
+          }
+
+          small {
+            display: block;
+            margin: $spacing-2 $spacing-6;
+            font-size: $font-size-1;
+            line-height: $spacing-3;
+            font-weight: $light-font-weight;
+            color: $grey-color-800;
+
+            @include mediumPhones {
+              line-height: $spacing-4;
+              margin: $spacing-2 $spacing-7;
+            }
+
+            @include largePhones {
+              line-height: $spacing-4;
+              margin: $spacing-2 $spacing-5;
+            }
+
+            @include largeLaptops {
+              line-height: $spacing-4;
+              margin: $spacing-2 $spacing-4;
+            }
+          }
+        }
+
+        .price-details {
+          background-color: $grey-color-100;
+          // background-color: red;
+          padding-top: $spacing-5;
+          height: 90px;
+
+          @include mediumPhones {
+            padding-top: $spacing-4;
+          }
+
+          @include largeLaptops {
+            padding-top: $spacing-6;
+            height: 120px;
+          }
+
+          .unit {
+            small {
+              display: block;
+              text-align: center;
+              margin-bottom: $spacing-2;
+              span {
+                color: $accent-color-green;
+              }
+            }
+          }
+          .price-amount-holder {
+            display: flex;
+            align-items: flex-start;
+            padding: 0 $spacing-6;
+
+            @include mediumPhones {
+              padding: 0 $spacing-7;
+            }
+            @include largePhones {
+              padding: 0 $spacing-5;
+            }
+            @include smallLaptops {
+            }
+            @include largeLaptops {
+              padding: 0 $spacing-4;
+            }
+
+            .price-amount {
+              display: flex;
+              align-items: flex-start;
+              span {
+                display: block;
+                padding-top: 0;
+                font-size: $font-size-1;
+                color: $accent-color-green;
+                font-weight: $normal-font-weight;
+                margin-right: $spacing-1;
+
+                @include mediumPhones {
+                  padding-top: $spacing-1;
+                }
+                @include largeLaptops {
+                  padding-top: $spacing-2;
+                  font-size: $font-size-2;
+                  font-weight: $heavy-font-weight;
+                }
+              }
+
+              h3 {
+                margin: 0;
+                display: inline-block;
+                font-size: $font-size-5;
+                font-weight: $light-font-weight;
+
+                @include mediumPhones {
+                  font-size: $font-size-6;
+                }
+
+                @include largePhones {
+                  font-size: $font-size-7;
+                }
+
+                @include largeLaptops {
+                  font-size: $font-size-8;
+                }
+              }
+            }
+
+            .price-description {
+              span {
+                display: block;
+                font-size: $font-size-1;
+                font-weight: $normal-font-weight;
+                color: $grey-color-900;
+                padding-left: $spacing-2;
+
+                @include largeLaptops {
+                  padding-left: $spacing-3;
+                }
+              }
+            }
+          }
+        }
+
+        .price-description-list {
+          height: 200px;
+          padding: $spacing-3 $spacing-6 $spacing-4 $spacing-6;
+          font-size: $font-size-1;
+          color: $accent-color-green;
+          // background-color: red;
+
+          @include mediumPhones {
+            padding: $spacing-3 $spacing-7 $spacing-4 $spacing-7;
+          }
+
+          @include largePhones {
+            padding: $spacing-3 $spacing-5 $spacing-4 $spacing-5;
+          }
+
+          @include largeLaptops {
+            padding: $spacing-3 $spacing-4 $spacing-4 $spacing-4;
+          }
+          li {
+            list-style-type: none;
+            display: flex;
+            align-items: baseline;
+            margin: $spacing-4 0;
+
+            small {
+              margin-left: $spacing-4;
+              color: $grey-color-600;
+              font-size: $font-size-2;
+            }
+          }
+        }
+
+        .pay-button {
+          padding: $spacing-4 $spacing-6;
+
+          @include mediumPhones {
+            padding: $spacing-4 $spacing-7;
+          }
+          @include largePhones {
+            padding: $spacing-4 $spacing-5;
+          }
+          @include largeLaptops {
+            padding: $spacing-4;
+          }
+          button {
+            width: 100%;
+            padding: $spacing-2;
+            border-radius: 4px;
+            border: 1px solid $grey-color-600;
+            background-color: transparent;
+            text-transform: uppercase;
+            color: $grey-color-900;
+            font-size: $font-size-1;
+            font-weight: $heavy-font-weight;
+            letter-spacing: $wide-letter-spacing;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            outline: none;
+          }
+
+          .subscribe {
+            border: 1px solid $primary-color-900;
+            background-color: $primary-color-900;
+            color: $grey-color-100;
+          }
+        }
+      }
+
+      .price-card-active {
+        background-color: $primary-color-900;
+        border: none;
+        border-top: 5px solid $primary-color-900;
+
+        @include largePhones {
+          transform: scale(1.05);
+          animation: 1s scaleUp;
+
+          @keyframes scaleUp {
+            0% {
+              transform: scale(1);
+            }
+            100% {
+              transform: scale(1.05);
+            }
+          }
+        }
+        .price-name {
+          h4 {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            color: $grey-color-100;
+            margin-right: $spacing-4;
+
+            @include largeLaptops {
+              margin-right: $spacing-2;
+            }
+            span {
+              color: $accent-color-green;
+              transform: scale(1.2);
+            }
+          }
+          small {
+            color: $grey-color-100;
+          }
+        }
+        .price-details {
+          background-color: $grey-color-100;
+        }
+        .price-description-list {
+          li {
+            small {
+              color: $grey-color-200;
+            }
+          }
+        }
+        .pay-button {
+          button {
+            border: 1px solid $grey-color-100;
+            background-color: $grey-color-100;
+            color: $primary-color-900;
+          }
+        }
+      }
+    }
+  }
+}

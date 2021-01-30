@@ -1,0 +1,25 @@
+@import "../../../assets/css/index.scss";
+
+.signout-wrapper {
+  position: relative;
+  // background-color: $product-tertiary-color;
+  min-height: 100vh;
+
+  .signout-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $primary-color-900;
+
+    span {
+      display: block;
+      text-align: center;
+
+      &:nth-child(1) {
+        font-size: 2em;
+        margin-bottom: 0.3em;
+      }
+    }
+  }
+}

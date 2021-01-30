@@ -1,0 +1,204 @@
+@import "../../../assets/css/index.scss";
+
+.left-navbar,
+.left-navbar-closed {
+  position: fixed;
+  overflow-y: auto;
+  z-index: 50;
+  width: 280px;
+  // max-width: 350px;
+  padding: 0 $spacing-5;
+  background-color: $primary-color-900;
+  height: 100vh;
+  animation: 1s openSidebar;
+
+  @keyframes openSidebar {
+    0% {
+      left: -280px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+
+  @include smallLaptops {
+    position: relative;
+    width: 100%; // relative width from application.scss ==> 300px
+    animation: 0s;
+  }
+
+  .left-navbar-header {
+    display: flex;
+    align-items: center;
+    color: $grey-color-100;
+    margin-top: $spacing-9;
+
+    // @include smallLaptops { margin-top: $spacing-9; }
+
+    h1 {
+      position: absolute;
+      top: $spacing-4;
+      left: 50%;
+      transform: translate(-50%, 0);
+      margin: 0;
+      font-size: $font-size-1;
+      text-transform: uppercase;
+      letter-spacing: $wide-letter-spacing;
+      @include smallLaptops {
+        font-size: $font-size-2;
+      }
+    }
+
+    .left-navbar-header-image {
+      display: block;
+      background-color: transparent;
+      height: 40px;
+      width: 40px;
+      padding: $spacing-1;
+      border-radius: 50%;
+      border: 2px solid $grey-color-100;
+      margin-right: $spacing-4;
+
+      @include smallLaptops {
+        height: 50px;
+        width: 50px;
+        padding: $spacing-1;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .profile-details {
+      h3 {
+        font-size: $font-size-3;
+        margin: 0;
+        font-weight: $normal-font-weight;
+        margin-bottom: $spacing-1;
+
+        @include smallLaptops {
+          font-size: $font-size-3;
+        }
+      }
+      p {
+        font-size: $font-size-2;
+        margin: 0;
+        color: $grey-color-600;
+
+        @include smallLaptops {
+          font-size: $font-size-2;
+        }
+      }
+    }
+  }
+
+  .left-navbar-links {
+    margin: $spacing-6 0;
+    position: relative;
+    font-size: $font-size-3;
+
+    @include smallLaptops {
+      font-size: $font-size-3;
+    }
+    @include largeLaptops {
+      font-size: $font-size-4;
+    }
+
+    li {
+      list-style-type: none;
+      display: block;
+      position: relative;
+      cursor: pointer;
+      margin: $spacing-2 0;
+      font-weight: $normal-font-weight;
+
+      @include smallLaptops {
+        margin: $spacing-1 0;
+      }
+
+      .left-navbar-icon-active,
+      .left-navbar-icon {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        color: $grey-color-100;
+
+        span {
+          color: $grey-color-600;
+          margin-right: $spacing-4;
+
+          @include smallLaptops {
+            margin-right: $spacing-4;
+          }
+          @include largeLaptops {
+            margin-right: $spacing-6;
+          }
+        }
+
+        &:hover {
+          span {
+            color: $primary-color-900;
+          }
+          color: $primary-color-900;
+          background-color: $grey-color-100;
+          animation: slideRight 0.5s;
+          border-radius: 4px;
+
+          @include smallLaptops {
+            padding-left: $spacing-4;
+          }
+          @include largeLaptops {
+            padding-left: $spacing-6;
+          }
+
+          @keyframes slideRight {
+            0% {
+              padding-left: 0;
+            }
+            80% {
+              padding-left: $spacing-7;
+            }
+            100% {
+              padding-left: $spacing-6;
+            }
+          }
+        }
+
+        p {
+          position: relative;
+          width: 80%;
+        }
+      }
+
+      .left-navbar-icon-active {
+        color: $accent-color-green;
+        span {
+          color: $accent-color-green;
+        }
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.left-navbar-closed {
+  left: -280px;
+  animation: 1s closeSidebar;
+
+  @keyframes closeSidebar {
+    0% {
+      left: 0px;
+    }
+    100% {
+      left: -280px;
+    }
+  }
+
+  @include smallLaptops {
+    left: 0;
+  }
+}

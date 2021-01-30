@@ -1,0 +1,335 @@
+@import "../../../assets/css/index.scss";
+
+.dashboard-page-wrapper {
+  .dashboard-control-panel {
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100vh;
+    padding: $spacing-8 $spacing-3 0 $spacing-3;
+
+    @include smallLaptops {
+      padding: $spacing-9 $spacing-7;
+    }
+
+    @include largeLaptops {
+      padding: $spacing-9 $spacing-10;
+    }
+
+    .verify-email {
+      // height: 50px;
+      background-color: rgba(255, 87, 71, 0.55);
+      margin-bottom: $spacing-5;
+      padding: $spacing-3 $spacing-5;
+      display: flex;
+      align-items: baseline;
+      border-radius: 4px;
+
+      .icon-holder {
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $grey-color-100;
+        margin-right: $spacing-5;
+        color: $accent-color-red;
+      }
+
+      small {
+        font-size: $font-size-2;
+        color: $primary-color-900;
+      }
+
+      a {
+        text-decoration: none;
+        background-color: $primary-color-900;
+        color: $grey-color-100;
+        padding: $spacing-2 $spacing-4;
+        margin-left: $spacing-5;
+        border-radius: 2px;
+        font-size: $font-size-1;
+        font-weight: $heavy-font-weight;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .dashboard-meter {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @include smallLaptops {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+      }
+      @include largeLaptops {
+      }
+
+      .meter-card,
+      .meter-card-active {
+        background-color: $grey-color-100;
+        text-align: center;
+        border-radius: 4px;
+        width: 48%;
+        height: 155px;
+        padding: $spacing-4 $spacing-3;
+        margin: $spacing-3 0 0 0;
+
+        @include smallLaptops {
+          width: 24%;
+          height: 165px;
+          padding: $spacing-5 $spacing-3;
+          margin: 0;
+        }
+
+        @include largeLaptops {
+          border-radius: 8px;
+          width: 24%;
+          height: 200px;
+          padding: $spacing-5 $spacing-4;
+        }
+
+        .meter-card-icon {
+          display: flex;
+          justify-content: center;
+
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $grey-color-200;
+            color: $grey-color-600;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+
+            @include smallLaptops {
+            }
+
+            @include largeLaptops {
+              height: 40px;
+              width: 40px;
+            }
+          }
+        }
+
+        h3 {
+          color: $primary-color-900;
+          font-size: $font-size-5;
+          margin: 0;
+          margin-top: $spacing-3;
+          margin-bottom: $spacing-2;
+          font-weight: $heavy-font-weight;
+          span {
+            font-size: $font-size-2;
+          }
+
+          @include smallLaptops {
+          }
+
+          @include largeLaptops {
+            font-size: $font-size-7;
+            margin-top: $spacing-4;
+          }
+        }
+
+        .not-critical {
+          color: $accent-color-green;
+          span {
+            color: $primary-color-900;
+          }
+        }
+        .critical {
+          color: $accent-color-red;
+          span {
+            color: $primary-color-900;
+          }
+        }
+
+        small {
+          font-size: $font-size-1;
+          display: block;
+          margin: 0;
+          margin-bottom: $spacing-3;
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          background-color: $primary-color-900;
+          padding: $spacing-2;
+          color: $grey-color-100;
+          font-size: $font-size-1;
+          text-transform: uppercase;
+          font-weight: $heavy-font-weight;
+          border-radius: 4px;
+        }
+      }
+
+      .meter-card-active {
+        background-color: $primary-color-900;
+
+        .meter-card-icon {
+          span {
+            color: $primary-color-900;
+          }
+        }
+
+        h3 {
+          color: $grey-color-100;
+        }
+
+        small {
+          color: $grey-color-100;
+
+          .difference-decrease {
+            color: $accent-color-green;
+          }
+          .difference-increase {
+            color: $accent-color-red;
+          }
+        }
+      }
+    }
+
+    .dashboard-stats-card {
+      width: 100%;
+      background-color: $primary-color-900;
+      border-radius: 4px;
+      margin-top: $spacing-5;
+      padding: $spacing-4 $spacing-3;
+
+      @include smallLaptops {
+        margin-top: $spacing-7;
+        padding: $spacing-4 $spacing-3;
+      }
+      @include largeLaptops {
+        padding: $spacing-5 $spacing-6;
+      }
+
+      h3 {
+        color: $grey-color-100;
+        margin: 0;
+        font-size: $font-size-2;
+
+        @include smallLaptops {
+          color: $grey-color-100;
+          margin: 0;
+          font-size: $font-size-2;
+        }
+        @include largeLaptops {
+          font-size: $font-size-3;
+        }
+      }
+
+      .stats-header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        .filter {
+          span {
+            color: $grey-color-100;
+            cursor: pointer;
+          }
+
+          .filter-card {
+            background-color: $grey-color-100;
+            color: $primary-color-900;
+            padding: $spacing-1 $spacing-3;
+            font-size: $font-size-1;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 30;
+            right: $spacing-1;
+            top: $spacing-5;
+            @include smallLaptops {
+              background-color: $grey-color-100;
+              color: $primary-color-900;
+              padding: $spacing-1 $spacing-3;
+              font-size: $font-size-1;
+              border-radius: 4px;
+              position: absolute;
+              z-index: 30;
+              right: $spacing-1;
+              top: $spacing-5;
+            }
+
+            @include largeLaptops {
+              font-size: $font-size-2;
+              padding: $spacing-2 $spacing-4;
+            }
+            li {
+              list-style-type: none;
+              margin: $spacing-2 0;
+              cursor: pointer;
+              @include smallLaptops {
+                list-style-type: none;
+                margin: $spacing-2 0;
+                cursor: pointer;
+              }
+
+              &:hover {
+                color: $accent-color-green;
+                font-weight: $heavy-font-weight;
+
+                @include smallLaptops {
+                  color: $accent-color-green;
+                  font-weight: $heavy-font-weight;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .chart {
+        h3 {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .area-chart {
+          width: 100%;
+          height: 200px;
+          font-size: $font-size-1;
+
+          @include smallLaptops {
+            height: 30vh;
+            height: 300px;
+          }
+        }
+      }
+    }
+
+    .no-meterId {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      h3 {
+        margin-bottom: $spacing-5;
+      }
+
+      &-action {
+        button {
+          cursor: pointer;
+          padding: $spacing-4 $spacing-8;
+          border: none;
+          background-color: $primary-color-900;
+          color: $grey-color-100;
+          text-transform: uppercase;
+          font-weight: $heavy-font-weight;
+          letter-spacing: $wide-letter-spacing;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

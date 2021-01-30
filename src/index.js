@@ -7,8 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import logger from "./services/logService";
 
-// modules
-import "./modules/font-awesome";
+import "./assets/icons";
 
 import "./index.css";
 

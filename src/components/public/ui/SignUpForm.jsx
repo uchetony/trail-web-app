@@ -22,6 +22,8 @@ export default function SignUpForm() {
     errors: {},
   };
 
+  const [formSubmitting, setFormSubmitting] = React.useState(false);
+
   // render input fields
   const signUpFormInputFields = [
     {
@@ -82,6 +84,7 @@ export default function SignUpForm() {
   };
 
   const doSubmit = async (userSignUpDetails) => {
+    setFormSubmitting(true);
     const userData = {
       fullName: userSignUpDetails.fullName,
       email: userSignUpDetails.email,
@@ -93,6 +96,8 @@ export default function SignUpForm() {
     try {
       const response = await registerUser(userData);
       auth.signInWithJwt(response.headers["x-auth-token"]);
+      setFormSubmitting(false);
+
       window.location = "/app";
       NotificationManager.success(
         "Signed Up Successfully",
@@ -100,6 +105,7 @@ export default function SignUpForm() {
         5000
       );
     } catch (ex) {
+      setFormSubmitting(false);
       if (ex.response) {
         const { data } = ex.response;
         NotificationManager.error(data, "Error!", 5000);
@@ -108,7 +114,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <div>
+    <div className="form">
       <div className="header">
         <h1>Start metering now!</h1>
       </div>
@@ -119,6 +125,7 @@ export default function SignUpForm() {
         state={signUpFormState}
         submitButton={submitButton}
         inputFields={signUpFormInputFields}
+        formSubmitting={formSubmitting}
       />
 
       <small className="no-account">

@@ -10,7 +10,14 @@ const INITIAL_FORM_STATE = {
 };
 
 export default function Form(props) {
-  const { doSubmit, state, errorSchema, submitButton, inputFields } = props;
+  const {
+    doSubmit,
+    state,
+    errorSchema,
+    submitButton,
+    inputFields,
+    formSubmitting,
+  } = props;
 
   const [formState, setFormState] = React.useState({ ...INITIAL_FORM_STATE });
 
@@ -30,7 +37,7 @@ export default function Form(props) {
   };
 
   // fix this method
-  const validateProperty = (name, value) => {
+  const validateInputField = (name, value) => {
     const validationObj = { [name]: value };
     const inputSchema = { [name]: errorSchema[name] };
     const { error } = Joi.validate(validationObj, inputSchema);
@@ -43,7 +50,7 @@ export default function Form(props) {
     data[name] = value;
 
     const errors = { ...formState.errors };
-    const errorMessage = validateProperty(name, value);
+    const errorMessage = validateInputField(name, value);
     errorMessage ? (errors[name] = errorMessage) : delete errors[name];
 
     setFormState({ data, errors });
@@ -96,13 +103,13 @@ export default function Form(props) {
     );
   };
 
-  const renderSubmitButton = ({ label, isSubmitting, submittingText }) => {
+  const renderSubmitButton = ({ label, submittingText }) => {
     return (
       <SubmitButton
         disabled={validateForm()}
         type="submit"
         label={label}
-        isSubmitting={isSubmitting}
+        isSubmitting={formSubmitting}
         submittingText={submittingText}
       />
     );

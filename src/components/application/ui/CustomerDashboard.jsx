@@ -6,7 +6,7 @@ import auth from "../../../services/authService";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DashboardAreaChart from "../charts/DashboardAreaChart";
-import RegisterMeter from "../ui/RegisterMeter";
+import RegisterMeterForm from "../ui/RegisterMeterForm";
 
 const CustomerDashboard = () => {
   const filterDataBy = ["Today", "last 7 days", "last 30 days", "last 1 year"];
@@ -63,7 +63,7 @@ const CustomerDashboard = () => {
 
   return (
     <div>
-      <RegisterMeter
+      <RegisterMeterForm
         isOpenPopUp={isRegisteringMeter}
         handleIsOpenPopUp={handleIsRegisteringMeter}
         userDetails={userDetails}

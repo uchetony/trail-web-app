@@ -11,17 +11,19 @@ import { setUserBillingData } from "../../../services/userService";
 
 import Form from "../../../components/common/form";
 
-import "../styles/RegisterMeter.scss";
+import "../styles/RegisterMeterForm.scss";
 
-const RegisterMeter = ({ handleIsOpenPopUp }) => {
-  const registerMeterState = {
+const RegisterMeterForm = ({ handleIsOpenPopUp }) => {
+  const registerMeterFormState = {
     data: { meterId: "", companyId: "" },
     errors: {},
   };
 
+  const [formSubmitting, setFormSubmitting] = React.useState(false);
+
   const [companies, setCompanies] = React.useState([]);
 
-  const registerMeterInputFields = [
+  const registerMeterFormInputFields = [
     {
       name: "meterId",
       label: "Meter Id",
@@ -38,7 +40,7 @@ const RegisterMeter = ({ handleIsOpenPopUp }) => {
   ];
 
   // validate each input field
-  const registerMeterErrorSchema = {
+  const registerMeterFormErrorSchema = {
     meterId: Joi.string().required().label("Meter Id"),
     companyId: Joi.string().required().label("Company"),
   };
@@ -59,6 +61,7 @@ const RegisterMeter = ({ handleIsOpenPopUp }) => {
   }, []);
 
   const doSubmit = async (meterDetails) => {
+    setFormSubmitting(true);
     const userId = auth.getCurrentUser()._id;
     const { companyName } = companies.find(
       (com) => com._id === meterDetails.companyId
@@ -73,6 +76,7 @@ const RegisterMeter = ({ handleIsOpenPopUp }) => {
     try {
       const response = await setUserBillingData(userId, billingData);
       auth.signInWithJwt(response.headers["x-auth-token"]);
+      setFormSubmitting(false);
 
       handleIsOpenPopUp(null);
       window.location = "/app";
@@ -82,6 +86,7 @@ const RegisterMeter = ({ handleIsOpenPopUp }) => {
         5000
       );
     } catch (ex) {
+      setFormSubmitting(false);
       if (ex.response) {
         const { data } = ex.response;
         NotificationManager.error(data, "Error!", 5000);
@@ -96,15 +101,18 @@ const RegisterMeter = ({ handleIsOpenPopUp }) => {
         <small>{auth.getCurrentUser()._id}</small>
       </div>
 
-      <Form
-        errorSchema={registerMeterErrorSchema}
-        doSubmit={doSubmit}
-        state={registerMeterState}
-        submitButton={submitButton}
-        inputFields={registerMeterInputFields}
-      />
+      <div className="form">
+        <Form
+          errorSchema={registerMeterFormErrorSchema}
+          doSubmit={doSubmit}
+          state={registerMeterFormState}
+          submitButton={submitButton}
+          inputFields={registerMeterFormInputFields}
+          formSubmitting={formSubmitting}
+        />
+      </div>
     </div>
   );
 };
 
-export default WithPopUp({ component: RegisterMeter });
+export default WithPopUp({ component: RegisterMeterForm });

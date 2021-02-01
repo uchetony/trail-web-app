@@ -22,7 +22,9 @@ export default function Form(props) {
   const [formState, setFormState] = React.useState({ ...INITIAL_FORM_STATE });
 
   React.useEffect(() => {
-    setFormState({ ...state });
+    setFormState((formState) =>
+      formState.data ? { ...formState } : { ...state }
+    );
   }, [state]);
 
   // fix this method

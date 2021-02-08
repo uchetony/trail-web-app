@@ -1,13 +1,13 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Joi from "joi-browser";
+import * as Yup from "yup";
 import { NotificationManager } from "react-notifications";
 
 import auth from "../../../services/authService";
 import { registerUser } from "../../../services/userService";
 
-import Form from "../../common/form";
+import Formcontainer from "../../common/FormContainer";
 
 export default function SignUpForm() {
   const signUpFormState = {
@@ -19,13 +19,12 @@ export default function SignUpForm() {
       fullName: "",
       confirmPassword: "",
     },
-    errors: {},
   };
 
   const [formSubmitting, setFormSubmitting] = React.useState(false);
 
   // render input fields
-  const signUpFormInputFields = [
+  const signUpFormFields = [
     {
       name: "fullName",
       label: "Full Name",
@@ -67,20 +66,36 @@ export default function SignUpForm() {
     },
   ];
 
-  // validate each input field
-  const signUpFormErrorSchema = {
-    fullName: Joi.string().required().label("Full Name"),
-    phoneNumber: Joi.number().required().label("Phone Number"),
-    address: Joi.string().required().label("Address"),
-    email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().label("Password"),
-    confirmPassword: Joi.string().required().label("Confirm Password"),
+  const signUpFormValidationSchema = {
+    fullName: Yup.string()
+      .min(2)
+      .matches(/(\w+\s{1}\w+){1}/, "Incorrect Entry e.g John Doe")
+      .required()
+      .label("Full Name"),
+    phoneNumber: Yup.string()
+      .matches(
+        /^(?:0(?:[7-9][0-5])[0-9]{8})$/,
+        "Invalid Nigerian phone Number. Must be exactly 11 digits and start with 070, 080, 090 etc."
+      )
+      .required()
+      .label("Phone Number"),
+    address: Yup.string().required().label("Address"),
+    email: Yup.string().email().required().label("Email"),
+    password: Yup.string()
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/,
+        "password should not be less than 6 characters, must contain atleast one uppercase, one number and one special character"
+      )
+      .required()
+      .label("Password"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Paaswords do not match")
+      .required("Please confirm your password"),
   };
 
   const submitButton = {
     label: "sign up",
-    isSubmitting: null,
-    submittingText: "submitting",
+    submittingText: "signing up",
   };
 
   const doSubmit = async (userSignUpDetails) => {
@@ -119,12 +134,12 @@ export default function SignUpForm() {
         <h1>Start metering now!</h1>
       </div>
 
-      <Form
-        errorSchema={signUpFormErrorSchema}
+      <Formcontainer
+        validationSchema={signUpFormValidationSchema}
         doSubmit={doSubmit}
         state={signUpFormState}
         submitButton={submitButton}
-        inputFields={signUpFormInputFields}
+        formFields={signUpFormFields}
         formSubmitting={formSubmitting}
       />
 

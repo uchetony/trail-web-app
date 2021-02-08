@@ -1,6 +1,6 @@
 import React from "react";
 
-import Joi from "joi-browser";
+import * as Yup from "yup";
 import { NotificationManager } from "react-notifications";
 
 import WithPopUp from "../../../hoc/WithPopUp";
@@ -9,7 +9,7 @@ import { getStakeholders } from "../../../services/stakeholderService";
 import auth from "../../../services/authService";
 import { setUserBillingData } from "../../../services/userService";
 
-import Form from "../../../components/common/form";
+import FormContainer from "../../common/FormContainer";
 
 import "../styles/RegisterMeterForm.scss";
 
@@ -23,7 +23,7 @@ const RegisterMeterForm = ({ handleIsOpenPopUp }) => {
 
   const [companies, setCompanies] = React.useState([]);
 
-  const registerMeterFormInputFields = [
+  const registerMeterFormFields = [
     {
       name: "meterId",
       label: "Meter Id",
@@ -31,6 +31,7 @@ const RegisterMeterForm = ({ handleIsOpenPopUp }) => {
       placeholder: "Enter meter id",
     },
     {
+      control: "select",
       name: "companyId",
       options: companies,
       valueProp: "_id",
@@ -39,10 +40,9 @@ const RegisterMeterForm = ({ handleIsOpenPopUp }) => {
     },
   ];
 
-  // validate each input field
-  const registerMeterFormErrorSchema = {
-    meterId: Joi.string().required().label("Meter Id"),
-    companyId: Joi.string().required().label("Company"),
+  const rgsMeterValidationSchema = {
+    meterId: Yup.string().required("Please enter your meter id"),
+    companyId: Yup.string().required("Please select a company"),
   };
 
   const submitButton = {
@@ -102,12 +102,12 @@ const RegisterMeterForm = ({ handleIsOpenPopUp }) => {
       </div>
 
       <div className="form">
-        <Form
-          errorSchema={registerMeterFormErrorSchema}
+        <FormContainer
+          validationSchema={rgsMeterValidationSchema}
           doSubmit={doSubmit}
           state={registerMeterFormState}
           submitButton={submitButton}
-          inputFields={registerMeterFormInputFields}
+          formFields={registerMeterFormFields}
           formSubmitting={formSubmitting}
         />
       </div>

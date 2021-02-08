@@ -1,34 +1,32 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Joi from "joi-browser";
+import * as Yup from "yup";
 import { NotificationManager } from "react-notifications";
 
 import auth from "../../../services/authService";
 
-import Form from "../../common/form";
+import FormContainer from "../../common/FormContainer";
 
 export default function SignInForm({ location }) {
-  const signInFormState = { data: { email: "", password: "" }, errors: {} };
+  const signInFormState = { data: { email: "", password: "" } };
 
   const [formSubmitting, setFormSubmitting] = React.useState(false);
 
   // render input fields
-  const signInFormInputFields = [
+  const signInFormFields = [
     { name: "email", label: "Email", icon: "envelope" },
     { name: "password", label: "Password", icon: "lock", type: "password" },
   ];
 
-  // validate each input field
-  const signInFormErrorSchema = {
-    email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().label("Password"),
+  const signInFormValidationSchema = {
+    email: Yup.string().email().required("Required").label("Email"),
+    password: Yup.string().required().label("Password"),
   };
 
   const submitButton = {
     label: "sign in",
-    isSubmitting: null,
-    submittingText: "submitting",
+    submittingText: "signing in",
   };
 
   const doSubmit = async (userLoginDetails) => {
@@ -63,12 +61,12 @@ export default function SignInForm({ location }) {
         <small>to your smart meter account</small>
       </div>
 
-      <Form
-        errorSchema={signInFormErrorSchema}
+      <FormContainer
+        validationSchema={signInFormValidationSchema}
         doSubmit={doSubmit}
         state={signInFormState}
         submitButton={submitButton}
-        inputFields={signInFormInputFields}
+        formFields={signInFormFields}
         formSubmitting={formSubmitting}
       />
 

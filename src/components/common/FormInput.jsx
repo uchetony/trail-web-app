@@ -1,8 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { Field, ErrorMessage } from "formik";
+import FormError from "./FormError";
+
 export default function FormInput(props) {
-  const { type, name, value, handleInputChange, label, icon, errorMsg } = props;
+  const { name, type, icon, value, ...rest } = props;
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const doSetShowPassword = () => setShowPassword(!showPassword);
@@ -23,15 +27,15 @@ export default function FormInput(props) {
             </i>
           )}
 
-          <input
+          <Field
             type={type === "password" ? (!showPassword ? type : "text") : type}
-            placeholder={label}
+            id={name}
             name={name}
             value={value}
-            onChange={handleInputChange}
+            {...rest}
           />
         </div>
-        <small className="error">{errorMsg}</small>
+        <ErrorMessage name={name} component={FormError} />
       </label>
     </div>
   );
